@@ -21,7 +21,7 @@ export function evalResponse(response, callback, msg){
     case 'ERROR':
       notify.show(response.meta.message, 'error', 8000);
       break;
-    case 'INVALID_SESSION':
+    case 'ACCESS_DENIED':
       notify.show('Inicie sesión por favor.','warning', 6000);
       localStorage.setItem('tokenSesion', '')
       let ruta = window.location.href.split('#');

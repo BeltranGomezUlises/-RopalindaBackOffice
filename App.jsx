@@ -4,6 +4,7 @@ import Notifications from 'react-notify-toast';
 import config from './config.json';
 // app_modules
 import Login from './app_modules/Login.jsx';
+import Prospecto from './app_modules/Prospectos/Prospecto.jsx';
 import DesktopContainer from './app_modules/DesktopContainer.jsx';
 
 const App =()=>(
@@ -28,6 +29,7 @@ class MainContainer extends React.Component{
       return(
         <DesktopContainer>       
           <Route path="/login" component={Login}/>          
+          <Route path="/prospectos" component={Prospecto}/>          
         </DesktopContainer>
       )
     }

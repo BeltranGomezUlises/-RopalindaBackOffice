@@ -53,7 +53,8 @@ export default class DesktopContainer extends Component {
             <Dropdown.Menu>
               <Dropdown.Item name='empleados' active={activeItem === 'empleados'}
                 onClick={this.handleClick}>Empleados</Dropdown.Item>
-              
+              <Dropdown.Item name='prospectos' active={activeItem === 'prospectos'}
+                onClick={this.handleClick}>Prospectos</Dropdown.Item>
           
             </Dropdown.Menu>
           </Dropdown>

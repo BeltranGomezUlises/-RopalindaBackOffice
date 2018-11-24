@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Segment, Divider, Header, Input, Form, Container} from 'semantic-ui-react';
+import { Button, Segment, Divider, Header, Form, Container} from 'semantic-ui-react';
 import * as utils from '../utils.js';
 
 export default class Login extends React.Component{
@@ -40,7 +40,7 @@ export default class Login extends React.Component{
         localStorage.setItem('tokenSesion', response.data.token);
         localStorage.setItem('logedUser', JSON.stringify(response.data.employee));
         let ruta = window.location.href.split('#');
-        window.location.href = ruta[0] + '#/prendas';
+        window.location.href = ruta[0] + '#/prospectos';
       }, response.meta.message);
     })
   }
