@@ -5,6 +5,7 @@ import config from './config.json';
 // app_modules
 import Login from './app_modules/Login.jsx';
 import Prospecto from './app_modules/Prospectos/Prospecto.jsx';
+import Compatible from './app_modules/Compatible/Compatible.jsx';
 import DesktopContainer from './app_modules/DesktopContainer.jsx';
 
 const App =()=>(
@@ -30,6 +31,7 @@ class MainContainer extends React.Component{
         <DesktopContainer>       
           <Route path="/login" component={Login}/>          
           <Route path="/prospectos" component={Prospecto}/>          
+          <Route path="/prendasCompatibles" component={Compatible}/>       
         </DesktopContainer>
       )
     }

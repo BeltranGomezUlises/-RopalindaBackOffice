@@ -40,9 +40,10 @@ export default class Prospecto extends React.Component {
     render() {
         return (
             <div>
-                <Segment textAlign='center'>
+                <Segment textAlign='center'>                                                            
                     <h3>Prospectos a cliente</h3>
                 </Segment>
+                
                 <List collection={this.state.collection} updateCollection={this.loadData} />
             </div>
         )

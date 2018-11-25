@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Segment, Table, Loader } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
-export default class Prospecto extends React.Component {
+export default class List extends React.Component {
 
     constructor(props) {
         super(props);
@@ -74,8 +74,7 @@ export default class Prospecto extends React.Component {
                     <Loader active size='big'>Cargando...</Loader>
                 </Segment>
             )
-        }
-        console.log(this.props.collection.length)
+        }        
         if (this.props.collection.length == 0) {
             return (
                 <Segment textAlign='center'>

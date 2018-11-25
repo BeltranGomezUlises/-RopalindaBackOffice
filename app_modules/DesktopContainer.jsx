@@ -29,7 +29,7 @@ export default class DesktopContainer extends Component {
 
   render() {
     const { children } = this.props
-    const { fixed, activeItem } = this.state
+    const { activeItem } = this.state
     return (
       <div>
         <Menu fixed='top'>
