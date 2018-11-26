@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Dropdown} from 'semantic-ui-react';
 import * as utils from '../../utils.js';
 
-export default class CmbEncargado extends React.Component {
+export default class CmbSubCategory extends React.Component {
 
   constructor(props){
     super(props);
@@ -13,7 +13,7 @@ export default class CmbEncargado extends React.Component {
   }
 
   componentWillMount() {
-    fetch(localStorage.getItem('url') + 'employees',{
+    fetch(localStorage.getItem('url') + 'categories?select=id,name,active=true',{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -37,13 +37,13 @@ export default class CmbEncargado extends React.Component {
   render(){
     return(
       <Form.Field>
-        <label>Cliente:</label>
+        <label>Categoría:</label>
         <Dropdown
           loading={this.state.buscando}
           search selection
           required
           options={this.state.options}
-          placeholder='Nombre encargado'
+          placeholder='Nombre categoría'
           onChange={(e, {value})=>{this.props.onChange(value)}}
         />
       </Form.Field>

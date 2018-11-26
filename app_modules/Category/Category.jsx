@@ -4,7 +4,7 @@ import { Segment } from 'semantic-ui-react';
 import Filter from './components/Filter.jsx';
 import List from './components/List.jsx';
 
-export default class Compatible extends React.Component {
+export default class Category extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,7 +30,7 @@ export default class Compatible extends React.Component {
         return (
             <div>
                 <Segment textAlign='center'>
-                    <h3>Prendas compatibles</h3>
+                    <h3>Categorías</h3>
                 </Segment>
                 <Filter ref={this.child} updateCollection={this.updateCollection} />
                 <List collection={this.state.collection} filter={this.filter} />

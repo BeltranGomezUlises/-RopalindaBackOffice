@@ -14,12 +14,10 @@ export default class FileUploader extends React.Component {
     }
 
     handleSubmit(file) {
-        this.setState({ loading: true });
-        console.log(file)
+        this.setState({ loading: true });        
         if (file) {
             let data = new FormData()
-            data.append('file', file);
-            console.log('data', data)
+            data.append('file', file);            
             fetch(localStorage.getItem('url') + 'utilities/upload', {
                 method: 'POST',
                 headers: {
@@ -29,10 +27,8 @@ export default class FileUploader extends React.Component {
                 body: data
             }).then((res) => res.json())
                 .then((r) => {
-                    this.setState({ loading: false });
-                    console.log('exito');
-                    utils.evalResponse(r, () => {
-                        console.log('exito');
+                    this.setState({ loading: false });                    
+                    utils.evalResponse(r, () => {                        
                         this.props.uploaded(r.data);
                     });
                 })

@@ -36,14 +36,14 @@ export default class DesktopContainer extends Component {
 
           <Dropdown item simple text='Productos'>
             <Dropdown.Menu>
-              <Dropdown.Item name='prendas' active={activeItem === 'prendas'}
+              <Dropdown.Item name='garment' active={activeItem === 'garment'}
                 onClick={this.handleClick}>Prendas</Dropdown.Item>
-              <Dropdown.Item name='prendasCompatibles' active={activeItem === 'prendasCompatibles'}
+              <Dropdown.Item name='compatibleGarments' active={activeItem === 'compatibleGarments'}
                 onClick={this.handleClick}>Prendas Compatibles</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item name='categorias' active={activeItem === 'categorias'}
+                <Dropdown.Item name='categories' active={activeItem === 'categories'}
                 onClick={this.handleClick}>Categorias</Dropdown.Item>
-                <Dropdown.Item name='subCategorias' active={activeItem === 'subCategorias'}
+                <Dropdown.Item name='subCategories' active={activeItem === 'subCategories'}
                 onClick={this.handleClick}>Sub-Categorias</Dropdown.Item>
             </Dropdown.Menu>
             
@@ -51,9 +51,9 @@ export default class DesktopContainer extends Component {
 
           <Dropdown item simple text='Empresa'>
             <Dropdown.Menu>
-              <Dropdown.Item name='empleados' active={activeItem === 'empleados'}
+              <Dropdown.Item name='employees' active={activeItem === 'employees'}
                 onClick={this.handleClick}>Empleados</Dropdown.Item>
-              <Dropdown.Item name='prospectos' active={activeItem === 'prospectos'}
+              <Dropdown.Item name='prospects' active={activeItem === 'prospects'}
                 onClick={this.handleClick}>Prospectos</Dropdown.Item>
           
             </Dropdown.Menu>
@@ -62,9 +62,9 @@ export default class DesktopContainer extends Component {
           <Menu.Menu position='right'>
             <Dropdown item simple text='Sistema'>
               <Dropdown.Menu>
-                <Menu.Item name='configuraciones' active={activeItem === 'configuraciones'}
+                <Menu.Item name='confs' active={activeItem === 'confs'}
                   onClick={this.handleClick}>Configuraciones</Menu.Item>
-                <Menu.Item color='yellow' onClick={() => {
+                <Menu.Item onClick={() => {
                   localStorage.setItem('tokenSesion', '');
                   let ruta = window.location.href.split('#');
                   window.location.href = ruta[0] + '#/login';

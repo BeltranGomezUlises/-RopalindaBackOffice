@@ -93,7 +93,7 @@ export default class Filter extends React.Component {
                     onClose={this.closeModal}
                     onOpen={this.openModal}
                     open={this.state.openModal}>
-                    <Header content='Agregar incidente' textAlign='center' />
+                    <Header content='Agregar prenda compatible' textAlign='center' />
                     <Modal.Content>
                         <EntityForm filter={this.filter} closeModal={this.closeModal}/>
                     </Modal.Content>

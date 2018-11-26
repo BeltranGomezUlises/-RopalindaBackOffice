@@ -1,6 +1,6 @@
 import React from 'react';
 import {Segment} from 'semantic-ui-react';
-import List from './componentes/List.jsx';
+import List from './components/List.jsx';
 import * as utils from '../../utils.js';
 
 export default class Prospecto extends React.Component {
@@ -31,8 +31,7 @@ export default class Prospecto extends React.Component {
         }).then((res) => res.json())
             .then((response) => {
                 utils.evalResponse(response, () => {
-                    this.setState({ collection: response.data })
-                    console.log(this.state);
+                    this.setState({ collection: response.data })                    
                 });
             })
     }
