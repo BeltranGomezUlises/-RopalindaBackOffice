@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Segment, Table, Modal, Header } from 'semantic-ui-react';
+import { Button, Segment,Card, Table, Modal, Header, Image } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import EntityEdit from './EditForm.jsx';
 
@@ -61,8 +61,8 @@ export default class List extends React.Component {
             let imageRoute = localStorage.getItem('url') + 'utilities/getFile/' + p.previewImage;
             return (
                 <Table.Row key={p.id}>
-                    <Table.Cell>
-                        <img src={imageRoute} height="120" width="120" />
+                    <Table.Cell>                        
+                        <Image src={imageRoute} size='small' centered bordered/>                        
                     </Table.Cell>
                     <Table.Cell>{p.name}</Table.Cell>
                     <Table.Cell>{p.description}</Table.Cell>
@@ -138,10 +138,10 @@ export default class List extends React.Component {
                     open={this.state.modalOpenEditar}>
                     <Header content='Editar prenda compatible' textAlign='center' />
                     <Modal.Content>
-                        <EntityEdit entity={this.state.activeEntity} 
+                        <EntityEdit entity={this.state.activeEntity}
                             closeModal={this.closeModalEditar}
-                            filter={this.props.filter}/>
-                    </Modal.Content>                 
+                            filter={this.props.filter} />
+                    </Modal.Content>
                 </Modal>
 
             </Segment>

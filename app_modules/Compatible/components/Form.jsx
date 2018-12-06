@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Input, Message } from 'semantic-ui-react';
+import { Form, Button, Input, Message, Card } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import FileUploader from '../../FileUploader.jsx';
 
@@ -68,7 +68,7 @@ export default class EntityForm extends React.Component {
         if(imageName !== null && imageName !== ''){
             let route = localStorage.getItem('url') + 'utilities/getFile/' + imageName;
             return(
-                <img src={route} height="120" width="120" />
+                <Card image={route} />
             )
         }
     }

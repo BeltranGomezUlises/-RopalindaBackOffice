@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Segment, Table, Modal, Header, Label } from 'semantic-ui-react';
+import { Button, Segment, Table, Modal, Header, Label, Image } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import EntityEdit from './EditForm.jsx';
 
@@ -63,7 +63,7 @@ export default class List extends React.Component {
             return (
                 <Table.Row key={p.id}>
                     <Table.Cell>
-                        <img src={imageRoute} height="120" width="120" />
+                        <Image src={imageRoute} size='small' centered bordered/>                                                
                     </Table.Cell>
                     <Table.Cell>
                         <Label>

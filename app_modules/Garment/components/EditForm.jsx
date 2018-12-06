@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Input, Message, Segment, Loader } from 'semantic-ui-react';
+import { Form, Card, Button, Input, Message, Dropdown, Segment, Loader, Popup } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import FileUploader from '../../FileUploader.jsx';
 import CmbSubCategory from '../../CmbCatalog/CmbSubCategory.jsx';
@@ -11,7 +11,9 @@ export default class EntityForm extends React.Component {
         this.state = {
             loading: false,
             warningMessage: null,
-            element: null
+            element: null,
+            compatibleOptions: [],
+            compatibleAssigned:[]
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -28,9 +30,36 @@ export default class EntityForm extends React.Component {
         }).then((res) => res.json())
             .then((r) => {
                 utils.evalResponse(r, () => {
-                    this.setState({ element: r.data });                    
+                    let compatibleAssigned = r.data.compatibleGarmentList.map(item => item.id);
+                    this.setState({ element: r.data, compatibleAssigned});
                 });
             })
+
+        fetch(localStorage.getItem('url') + 'compatibleGarments?select=id,name,previewImage,active=true', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': localStorage.getItem('tokenSesion')
+            }
+        }).then((res) => res.json())
+            .then((r) => {
+                this.setState({ filtering: false });
+                utils.evalResponse(r, () => {
+                    let compatibleOptions = [];
+                    r.data.forEach(item => {
+                        compatibleOptions.push({text: item.name, value: item.id, image:{
+                            avatar: true, src: localStorage.getItem('url') + 'utilities/getFile/' + item.previewImage
+                        }});
+                    });
+                    console.log(compatibleOptions)
+                    this.setState({compatibleOptions});
+                    console.log(this.state)
+                })
+            });
+
+
     }
 
     handleSubmit() {
@@ -40,14 +69,15 @@ export default class EntityForm extends React.Component {
             this.setState({ warningMessage: 'Debe proporcionar una imagen de previzualización' })
             return;
         }
-        if (element.image == '') {
-            this.setState({ warningMessage: 'Debe proporcionar una imagen de tamaño completo' })
-            return;
-        }
         if (element.subcategory.id == null) {
             this.setState({ warningMessage: 'Debe proporcionar una sub-categoría' })
             return;
         }
+
+        let compatibleGarmentList = this.state.compatibleAssigned.map(item => {
+            return {id: item}
+        })        
+        element.compatibleGarmentList = compatibleGarmentList;
 
         this.setState({ loading: true });
         fetch(localStorage.getItem('url') + 'garments', {
@@ -83,9 +113,31 @@ export default class EntityForm extends React.Component {
         if (imageName !== null && imageName !== '') {
             let route = localStorage.getItem('url') + 'utilities/getFile/' + imageName;
             return (
-                <img src={route} height="120" width="120" />
+                <Card image={route} />
             )
         }
+    }
+
+    renderImageList(imageList) {
+        return imageList.map(image => {
+            let route = localStorage.getItem('url') + 'utilities/getFile/' + image.imagesPK.imagePath;
+            return (
+                <Popup key={image.imagesPK.imagePath} trigger={
+                    <Card image={route} onClick={() => {
+                        let { imagesList } = this.state.element;
+                        let index = -1;
+                        for (let i = 0; i < imagesList.length; i++) {
+                            if (imagesList[i].imagesPK.imagePath == image.imagesPK.imagePath) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        imagesList.splice(index, 1);
+                        this.setState({ imagesList });
+                    }} />
+                } content='Click para remover' />
+            )
+        });
     }
 
     render() {
@@ -95,7 +147,7 @@ export default class EntityForm extends React.Component {
                     <Loader active size='big'>Cargando...</Loader>
                 </Segment>
             )
-        }        
+        }
         return (
             <div>
                 {this.renderWarningMessage()}
@@ -137,19 +189,42 @@ export default class EntityForm extends React.Component {
                         this.setState({ element });
                     }} />
                     <label>Foto previsualización:</label>
-                    {this.renderImage(this.state.element.previewImage)}
                     <FileUploader uploaded={(fileName) => {
                         let { element } = this.state;
                         element.previewImage = fileName;
                         this.setState({ element });
                     }} />
-                    <label>Foto grande:</label>
-                    {this.renderImage(this.state.element.image)}
+                    {this.renderImage(this.state.element.previewImage)}
+                    <br></br>
+                    <label>Fotos grandes:</label>
                     <FileUploader uploaded={(fileName) => {
                         let { element } = this.state;
-                        element.image = fileName;
+                        element.imagesList.push({
+                            active: true,
+                            imagesPK: {
+                                garment: this.props.entity.id,
+                                imagePath: fileName
+                            }
+                        });
                         this.setState({ element });
                     }} />
+                    <br></br>
+                    <Card.Group itemsPerRow={4}>
+                        {this.renderImageList(this.state.element.imagesList)}
+                    </Card.Group>
+                    <br></br>
+                    <Dropdown                        
+                        fluid
+                        multiple
+                        search
+                        selection
+                        options={this.state.compatibleOptions}
+                        value={this.state.compatibleAssigned}
+                        placeholder='Seleccione prendas compatibles a asignar'
+                        onChange={(e, {value}) => {                            
+                            this.setState({compatibleAssigned: value})
+                        }}
+                    />
                     <br></br>
                     <Button color='green'
                         loading={this.state.loading}

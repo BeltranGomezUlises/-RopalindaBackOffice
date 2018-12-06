@@ -16,7 +16,6 @@ export default class EntityForm extends React.Component {
                 name: '',
                 description: '',
                 previewImage: '',
-                image: '',
                 subcategory: {
                     id: null
                 }
@@ -31,11 +30,7 @@ export default class EntityForm extends React.Component {
         if (element.previewImage == '') {
             this.setState({ warningMessage: 'Debe proporcionar una imagen de previzualización' })
             return;
-        }
-        if (element.image == '') {
-            this.setState({ warningMessage: 'Debe proporcionar una imagen de tamaño completo' })
-            return;
-        }
+        }      
         if(element.subcategory.id == null){
             this.setState({ warningMessage: 'Debe proporcionar una sub-categoría' })
             return;
@@ -127,14 +122,7 @@ export default class EntityForm extends React.Component {
                         let { element } = this.state;
                         element.previewImage = fileName;
                         this.setState({ element });
-                    }} />
-                    <label>Foto grande:</label>
-                    {this.renderImage(this.state.element.image)}
-                    <FileUploader uploaded={(fileName) => {
-                        let { element } = this.state;
-                        element.image = fileName;
-                        this.setState({ element });
-                    }} />
+                    }} />                   
                     <br></br>
                     <Button color='green'
                         loading={this.state.loading}

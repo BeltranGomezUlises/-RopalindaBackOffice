@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Input, Message, Loader, Segment } from 'semantic-ui-react';
+import { Card, Form, Button, Input, Message, Loader, Segment } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import FileUploader from '../../FileUploader.jsx';
 
@@ -120,14 +120,14 @@ export default class EntityEditForm extends React.Component {
                     >
                     </Form.Field>
                     <label>Foto previsualización:</label>
-                    <img src={preImageRoute} height="120" width="120" />
+                    <Card image={preImageRoute} />                       
                     <FileUploader uploaded={(fileName) => {
                         let { element } = this.state;
                         element.previewImage = fileName;
                         this.setState({ element });
                     }} />
                     <label>Foto grande:</label>
-                    <img src={imageRoute} height="120" width="120" />
+                    <Card image={imageRoute} />                    
                     <FileUploader uploaded={(fileName) => {
                         let { element } = this.state;
                         element.image = fileName;
