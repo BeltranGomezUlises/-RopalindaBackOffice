@@ -11,7 +11,7 @@ import Category from './app_modules/Category/Category.jsx';
 import SubCategory from './app_modules/SubCategory/SubCategory.jsx';
 import DesktopContainer from './app_modules/DesktopContainer.jsx';
 import Employee from './app_modules/Employees/Employee.jsx';
-
+import Conf from './app_modules/Configuration.jsx';
 const App =()=>(
     <HashRouter>
         <MainContainer></MainContainer>
@@ -40,6 +40,7 @@ class MainContainer extends React.Component{
           <Route path="/categories" component={Category}/> 
           <Route path="/subCategories" component={SubCategory}/>
           <Route path="/employees" component={Employee}/>
+          <Route path="/confs" component={Conf}/>
         </DesktopContainer>
       )
     }
@@ -48,7 +49,7 @@ class MainContainer extends React.Component{
   render() {
     return(
       <div>
-        <Notifications />
+        <Notifications options={{zIndex: 1001}}/>
         {this.renderMainContent()}
       </div>
     )

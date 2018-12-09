@@ -74,7 +74,8 @@ export default class DesktopContainer extends Component {
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Menu>
-        </Menu>
+        </Menu>        
+        <br></br>
         <br></br>
         <br></br>
         {children}

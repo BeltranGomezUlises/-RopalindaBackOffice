@@ -34,9 +34,9 @@ export default class Filter extends React.Component {
     filter() {
         this.setState({ filtering: true });
         let { filter } = this.state;
-        let route = "employees";
+        let route = "employees?select=mail,active=true,name,fullName,employeeType=1";
         if(filter.name !== ''){
-            route = "employees?select=id,active=true,name%'" + filter.name+"'";
+            route = "employees?select=mail,active=true,employeeType=1,name%'" + filter.name+"'";
         }
         fetch(localStorage.getItem('url') + route, {
                 method: 'GET',
