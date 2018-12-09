@@ -11,6 +11,7 @@ import Category from './app_modules/Category/Category.jsx';
 import SubCategory from './app_modules/SubCategory/SubCategory.jsx';
 import DesktopContainer from './app_modules/DesktopContainer.jsx';
 import Employee from './app_modules/Employees/Employee.jsx';
+import RecoverPassword from './app_modules/Password/RecoverPassword.jsx';
 
 const App =()=>(
     <HashRouter>
@@ -40,6 +41,7 @@ class MainContainer extends React.Component{
           <Route path="/categories" component={Category}/> 
           <Route path="/subCategories" component={SubCategory}/>
           <Route path="/employees" component={Employee}/>
+          <Route path="/recuperar" component={RecoverPassword}/>
         </DesktopContainer>
       )
     }

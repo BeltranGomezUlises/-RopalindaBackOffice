@@ -10,13 +10,15 @@ export default class Login extends React.Component{
       user: '',
       pass: '',
       message: '',
-      loading:false
+      loading:false,
+      recoverPass:false
     }
 
     localStorage.setItem('tokenSesion', '');
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePassChange = this.handlePassChange.bind(this);
+    this.handleRecoverPassword = this.handleRecoverPassword.bind(this);
 
     let ruta = window.location.href.split('#');
     window.location.href = ruta[0] + '#/login';
@@ -43,6 +45,13 @@ export default class Login extends React.Component{
         window.location.href = ruta[0] + '#/prospects';
       }, response.meta.message);
     })
+  }
+
+  handleRecoverPassword(){
+    if(this.state.recoverPass === true){
+      let ruta = window.location.href.split('#');
+      window.location.href = ruta[0] + '#/recuperar';
+    }
   }
 
   handleUserChange(evt){
@@ -87,6 +96,11 @@ export default class Login extends React.Component{
                 <Form.Input fluid icon='user' iconPosition='left' placeholder='Ingrese el usuario...' onChange={this.handleUserChange}/>
                 <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password' onChange={this.handlePassChange}/>
                 {this.renderButton()}
+                <br></br>
+                <a href='/#/recuperar' onClick={() => {
+                  this.setState({recoverPass: true});
+                  this.handleRecoverPassword();
+                }}>¿Recuperar contraseña?</a>
               </Form>
           </Segment>
         </Container>

@@ -99,31 +99,20 @@ export default class EntityForm extends React.Component {
                         }}
                     >
                     </Form.Field>
-                    <Form.Group widths='equal'>
-                        <Form.Field control={Input} required label='Teléfono:'
-                            type='number'
-                            step='1'
-                            max='9999999999'
-                            maxLength='10'
-                            placeholder='Número telefónico del empleado a 10 digitos'
-                            value={this.state.element.phone}
-                            onChange={(e) => {
-                                let { element } = this.state;
-                                element.phone = e.target.value;
-                                this.setState({ element });
-                            }}
-                        >
-                        </Form.Field>
-                        <Form.Field required>
-                            <label>Fecha de nacimiento:</label>
-                            <input type='date'
-                            value={this.state.element.birthday}
-                            onChange={(evt) => {
-                                
-                            }}
-                            />
-                        </Form.Field>
-                    </Form.Group>
+                    <Form.Field control={Input} required label='Teléfono:'
+                        type='number'
+                        step='1'
+                        max='9999999999'
+                        maxLength='10'
+                        placeholder='Número telefónico del empleado a 10 digitos'
+                        value={this.state.element.phone}
+                        onChange={(e) => {
+                            let { element } = this.state;
+                            element.phone = e.target.value;
+                            this.setState({ element });
+                        }}
+                    >
+                    </Form.Field>
                     <Form.Field control={Input} required label='Correo:'
                         placeholder='Correo electrónico del empleado'
                         value={this.state.element.mail}
