@@ -3,6 +3,7 @@ import { Card, Form, Button, Input, Message, Loader, Segment } from 'semantic-ui
 import * as utils from '../../../utils.js';
 import FileUploader from '../../FileUploader.jsx';
 
+
 export default class EntityEditForm extends React.Component {
 
     constructor(props) {
@@ -84,6 +85,7 @@ export default class EntityEditForm extends React.Component {
         }
         let preImageRoute = localStorage.getItem('url') + 'utilities/getFile/' + this.state.element.previewImage;
         let imageRoute = localStorage.getItem('url') + 'utilities/getFile/' + this.state.element.image;
+        let employee = JSON.parse(localStorage.getItem('logedUser'));    
         return (
             <div>
                 {this.renderWarningMessage()}
@@ -108,7 +110,7 @@ export default class EntityEditForm extends React.Component {
                         }}
                     >
                     </Form.Field>
-                    <Form.Field control={Input} required
+                    <Form.Field control={Input} required disabled={employee.employeeType != 0}
                         label='Precio:' type='number' placeholder='Precio de la prenda compatible...'
                         value={this.state.element.price}
                         min='1' max='9999' step='0.01'

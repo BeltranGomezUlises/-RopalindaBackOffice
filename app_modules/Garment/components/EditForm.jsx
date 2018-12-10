@@ -4,6 +4,7 @@ import * as utils from '../../../utils.js';
 import FileUploader from '../../FileUploader.jsx';
 import CmbSubCategory from '../../CmbCatalog/CmbSubCategory.jsx';
 
+
 export default class EntityForm extends React.Component {
 
     constructor(props) {
@@ -52,10 +53,8 @@ export default class EntityForm extends React.Component {
                         compatibleOptions.push({text: item.name, value: item.id, image:{
                             avatar: true, src: localStorage.getItem('url') + 'utilities/getFile/' + item.previewImage
                         }});
-                    });
-                    console.log(compatibleOptions)
-                    this.setState({compatibleOptions});
-                    console.log(this.state)
+                    });                    
+                    this.setState({compatibleOptions});                    
                 })
             });
 
@@ -141,6 +140,7 @@ export default class EntityForm extends React.Component {
     }
 
     render() {
+        let employee = JSON.parse(localStorage.getItem('logedUser'));
         if (this.state.element == null) {
             return (
                 <Segment inverted style={{ 'min-height': '400px' }}>
@@ -172,7 +172,7 @@ export default class EntityForm extends React.Component {
                         }}
                     >
                     </Form.Field>
-                    <Form.Field control={Input} required
+                    <Form.Field control={Input} required disabled={employee.employeeType != 0}
                         label='Precio:' type='number' placeholder='Precio de la prenda...'
                         value={this.state.element.price}
                         min='1' max='9999' step='0.01'

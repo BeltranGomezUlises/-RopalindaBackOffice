@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, Segment,Card, Table, Modal, Header, Image } from 'semantic-ui-react';
+import { Button, Segment, Card, Table, Modal, Header, Image } from 'semantic-ui-react';
 import * as utils from '../../../utils.js';
 import EntityEdit from './EditForm.jsx';
+
 
 export default class List extends React.Component {
 
@@ -57,12 +58,13 @@ export default class List extends React.Component {
     };
 
     renderList() {
+        let employee = JSON.parse(localStorage.getItem('logedUser'));
         return this.props.collection.map(p => {
             let imageRoute = localStorage.getItem('url') + 'utilities/getFile/' + p.previewImage;
             return (
                 <Table.Row key={p.id}>
-                    <Table.Cell>                        
-                        <Image src={imageRoute} size='small' centered bordered/>                        
+                    <Table.Cell>
+                        <Image src={imageRoute} size='small' centered bordered />
                     </Table.Cell>
                     <Table.Cell>{p.name}</Table.Cell>
                     <Table.Cell>{p.description}</Table.Cell>
@@ -72,10 +74,12 @@ export default class List extends React.Component {
                             this.setState({ activeEntity: p });
                             this.openModalEditar();
                         }} />
-                        <Button icon='trash' size='small' color='red' onClick={() => {
-                            this.setState({ activeEntity: p });
-                            this.openModalEliminar();
-                        }} />
+                        <Button icon='trash' size='small' color='red'
+                            disabled={employee.employeeType != 0}
+                            onClick={() => {
+                                this.setState({ activeEntity: p });
+                                this.openModalEliminar();
+                            }} />
                     </Table.Cell>
                 </Table.Row>
             )

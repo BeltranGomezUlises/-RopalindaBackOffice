@@ -57,17 +57,18 @@ export default class List extends React.Component {
     };
 
     renderList() {
+        let employee = JSON.parse(localStorage.getItem('logedUser'));
         return this.props.collection.map(p => {
             let imageRoute = localStorage.getItem('url') + 'utilities/getFile/' + p.previewImage;
             let iconRoute = localStorage.getItem('url') + 'utilities/getFile/' + p.subcategory_icon;
             return (
                 <Table.Row key={p.id}>
                     <Table.Cell>
-                        <Image src={imageRoute} size='small' centered bordered/>                                                
+                        <Image src={imageRoute} size='small' centered bordered />
                     </Table.Cell>
                     <Table.Cell>
                         <Label>
-                            <img src={iconRoute} height="24" width="24" style={{'marginRight':'10px'}}/>
+                            <img src={iconRoute} height="24" width="24" style={{ 'marginRight': '10px' }} />
                             {p.subcategory_name}
                         </Label>
                     </Table.Cell>
@@ -79,10 +80,12 @@ export default class List extends React.Component {
                             this.setState({ activeEntity: p });
                             this.openModalEditar();
                         }} />
-                        <Button icon='trash' size='small' color='red' onClick={() => {
-                            this.setState({ activeEntity: p });
-                            this.openModalEliminar();
-                        }} />
+                        <Button icon='trash' size='small' color='red'
+                            disabled={employee.employeeType != 0}
+                            onClick={() => {
+                                this.setState({ activeEntity: p });
+                                this.openModalEliminar();
+                            }} />
                     </Table.Cell>
                 </Table.Row>
             )

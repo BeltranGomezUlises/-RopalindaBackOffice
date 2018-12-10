@@ -29,7 +29,8 @@ export default class DesktopContainer extends Component {
 
   render() {
     const { children } = this.props
-    const { activeItem } = this.state
+    const { activeItem } = this.state    
+    let employee = JSON.parse(localStorage.getItem('logedUser'));    
     return (
       <div>
         <Menu fixed='top'>
@@ -41,15 +42,15 @@ export default class DesktopContainer extends Component {
               <Dropdown.Item name='compatibleGarments' active={activeItem === 'compatibleGarments'}
                 onClick={this.handleClick}>Prendas Compatibles</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item name='categories' active={activeItem === 'categories'}
+                <Dropdown.Item  disabled={employee.employeeType != 0} name='categories' active={activeItem === 'categories'}
                 onClick={this.handleClick}>Categorias</Dropdown.Item>
-                <Dropdown.Item name='subCategories' active={activeItem === 'subCategories'}
+                <Dropdown.Item disabled={employee.employeeType != 0} name='subCategories' active={activeItem === 'subCategories'}
                 onClick={this.handleClick}>Sub-Categorias</Dropdown.Item>
             </Dropdown.Menu>
             
           </Dropdown>
 
-          <Dropdown item simple text='Empresa'>
+          <Dropdown item simple text='Empresa' disabled={employee.employeeType != 0}>
             <Dropdown.Menu>
               <Dropdown.Item name='employees' active={activeItem === 'employees'}
                 onClick={this.handleClick}>Empleados</Dropdown.Item>
@@ -62,7 +63,9 @@ export default class DesktopContainer extends Component {
           <Menu.Menu position='right'>
             <Dropdown item simple text='Sistema'>
               <Dropdown.Menu>
-                <Menu.Item name='confs' active={activeItem === 'confs'}
+                <Menu.Item 
+                  disabled={employee.employeeType != 0}
+                  name='confs' active={activeItem === 'confs'}
                   onClick={this.handleClick}>Configuraciones</Menu.Item>
                 <Menu.Item onClick={() => {
                   localStorage.setItem('tokenSesion', '');
@@ -75,10 +78,9 @@ export default class DesktopContainer extends Component {
             </Dropdown>
           </Menu.Menu>
         </Menu>        
-        <br></br>
-        <br></br>
-        <br></br>
+        <div style={{marginTop: 50}}>
         {children}
+        </div>
       </div>
     )
   }

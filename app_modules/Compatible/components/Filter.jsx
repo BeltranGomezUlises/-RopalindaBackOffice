@@ -56,6 +56,7 @@ export default class Filter extends React.Component {
     }
 
     render() {
+        let employee = JSON.parse(localStorage.getItem('logedUser'));
         return (
             <Segment style={{ 'padding': '10px' }}>
                 <Divider horizontal>Filtros de Búsqueda</Divider>
@@ -81,7 +82,8 @@ export default class Filter extends React.Component {
                             <Icon name='filter' />
                         </Button.Content>
                     </Button>
-                    <Button color='green' animated type='button' onClick={this.openModal}>
+                    <Button color='green' disabled={employee.employeeType != 0}
+                        animated type='button' onClick={this.openModal}>
                         <Button.Content hidden>Nuevo</Button.Content>
                         <Button.Content visible>
                             <Icon name='plus' />

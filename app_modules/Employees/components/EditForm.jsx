@@ -31,9 +31,7 @@ export default class EntityForm extends React.Component {
             })
     }
 
-    handleSubmit() {
-        let { element } = this.state;
-
+    handleSubmit() {        
         this.setState({ loading: true });
         fetch(localStorage.getItem('url') + 'employees', {
             method: 'PUT',
@@ -113,16 +111,7 @@ export default class EntityForm extends React.Component {
                                 this.setState({ element });
                             }}
                         >
-                        </Form.Field>
-                        <Form.Field required>
-                            <label>Fecha de nacimiento:</label>
-                            <input type='date'
-                            value={this.state.element.birthday}
-                            onChange={(evt) => {
-                                
-                            }}
-                            />
-                        </Form.Field>
+                        </Form.Field>                    
                     </Form.Group>
                     <Form.Field control={Input} required label='Correo:'
                         placeholder='Correo electrónico del empleado'
@@ -134,23 +123,7 @@ export default class EntityForm extends React.Component {
                             this.setState({ element });
                         }}
                     >
-                    </Form.Field>
-                    <Form.Field control={Input} label='Contraseña:'
-                        required type='password' autoComplete='off'
-                        placeholder='Ingrese su contraseña'
-                        onChange={(e) => {
-                            let { element } = this.state;
-                            element.pass = e.target.value;
-                            this.setState({ element });
-                        }}>
-                    </Form.Field>
-                    <Form.Field control={Input} label='Confirmación de contraseña:'
-                        required type='password' autoComplete='off'
-                        placeholder='Ingrese de nuevo su contraseña'
-                        onChange={(e) => {
-                            this.setState({ confirm: e.target.value })
-                        }}>
-                    </Form.Field>             
+                    </Form.Field>                 
                     <br></br>
                     <Button color='green'
                         loading={this.state.loading}

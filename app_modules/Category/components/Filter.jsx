@@ -73,7 +73,7 @@ export default class Filter extends React.Component {
                             />
                         </Form.Field>                        
                     </Form.Group>
-                    <Button primary animated
+                    <Button primary animated 
                         loading={this.state.filtering}
                         type={this.state.filtering ? 'button' : 'submit'}>
                         <Button.Content hidden>Buscar</Button.Content>

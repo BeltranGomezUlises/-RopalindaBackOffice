@@ -149,16 +149,7 @@ export default class EntityForm extends React.Component {
                                 this.setState({ element });
                             }}
                         >
-                        </Form.Field>
-                        <Form.Field required>
-                            <label>Fecha de nacimiento:</label>
-                            <input type='date'
-                            value={this.state.element.birthday}
-                            onChange={(evt) => {
-                                
-                            }}
-                            />
-                        </Form.Field>
+                        </Form.Field>                     
                     </Form.Group>
                     <Form.Field control={Input} required label='Correo:'
                         placeholder='Correo electrónico del empleado'

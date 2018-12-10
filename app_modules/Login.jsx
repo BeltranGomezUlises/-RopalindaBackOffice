@@ -39,8 +39,12 @@ export default class Login extends React.Component{
       utils.evalResponse(response, () => {
         localStorage.setItem('tokenSesion', response.data.token);
         localStorage.setItem('logedUser', JSON.stringify(response.data.employee));
+        let destinoDefault = '#/prospects';
+        if(response.data.employee.employeeType != 0){
+          destinoDefault= '#/garment';
+        }
         let ruta = window.location.href.split('#');
-        window.location.href = ruta[0] + '#/prospects';
+        window.location.href = ruta[0] + destinoDefault;
       }, response.meta.message);
     })
   }
