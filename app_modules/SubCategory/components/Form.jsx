@@ -50,7 +50,7 @@ export default class EntityForm extends React.Component {
                 utils.evalResponse(r, () => {
                     this.props.closeModal();
                     this.props.filter();
-                }, 'Prenda compatible agregada con éxito.');
+                }, 'Sub-categoría agregada con éxito.');
             })
     }
 
