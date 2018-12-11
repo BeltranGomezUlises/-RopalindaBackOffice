@@ -31,7 +31,7 @@ export default class List extends React.Component {
 
     accept(mail){
         let body = {mail:mail}
-        fetch(localStorage.getItem('url') + 'prospectiveCustomers/reject', {
+        fetch(localStorage.getItem('url') + 'prospectiveCustomers/accept', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
